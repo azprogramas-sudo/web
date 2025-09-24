@@ -89,13 +89,23 @@
             </div>
           </div>
 
-          <!-- Gráfico de Ventas -->
+          <!-- Gráfico Ventas -->
           <div class="card shadow mt-4">
             <div class="card-header">
               <h6 class="m-0 font-weight-bold text-primary">Ventas del Último Mes</h6>
             </div>
             <div class="card-body">
               <canvas id="salesChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Gráfico Comparativo -->
+          <div class="card shadow mt-4">
+            <div class="card-header">
+              <h6 class="m-0 font-weight-bold text-success">Compras vs Ventas</h6>
+            </div>
+            <div class="card-body">
+              <canvas id="compareChart"></canvas>
             </div>
           </div>
         </div>
@@ -120,48 +130,92 @@
   <!-- JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
   <script>
-    // Toggle sidebar
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
+    document.addEventListener("DOMContentLoaded", function() {
+      // Toggle sidebar
+      $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+      });
 
-    // Navegación entre secciones
-    $("[data-content]").on("click", function(e) {
-      e.preventDefault();
-      const target = $(this).data("content");
-      $(".list-group-item").removeClass("active bg-primary text-white").addClass("bg-light");
-      $(this).addClass("active bg-primary text-white");
-      $(".content-section").addClass("d-none");
-      $("#" + target).removeClass("d-none");
-    });
+      // Navegación entre secciones
+      $("[data-content]").on("click", function(e) {
+        e.preventDefault();
+        const target = $(this).data("content");
+        $(".list-group-item").removeClass("active bg-primary text-white").addClass("bg-light");
+        $(this).addClass("active bg-primary text-white");
+        $(".content-section").addClass("d-none");
+        $("#" + target).removeClass("d-none");
+      });
 
-    // Gráfico de ejemplo
-    const ctx = document.getElementById('salesChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ['1', '5', '10', '15', '20', '25', '30'],
-        datasets: [{
-          label: 'Ventas (COP)',
-          data: [500000, 800000, 1200000, 950000, 1400000, 1100000, 1600000],
-          borderColor: '#4e73df',
-          backgroundColor: 'rgba(78, 115, 223, 0.2)',
-          tension: 0.3,
-          fill: true,
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: true }
-        },
-        scales: {
-          y: { beginAtZero: true }
-        }
+      // Gráfico de Ventas (línea)
+      const salesCtx = document.getElementById('salesChart');
+      if (salesCtx) {
+        new Chart(salesCtx, {
+          type: 'line',
+          data: {
+            labels: ['1', '5', '10', '15', '20', '25', '30'],
+            datasets: [{
+              label: 'Ventas (COP)',
+              data: [500000, 800000, 1200000, 950000, 1400000, 1100000, 1600000],
+              borderColor: '#4e73df',
+              backgroundColor: 'rgba(78, 115, 223, 0.2)',
+              tension: 0.3,
+              fill: true,
+            }]
+          },
+          options: {
+            responsive: true,
+            animation: {
+              duration: 1200,
+              easing: 'easeOutQuart'
+            },
+            plugins: {
+              legend: { display: true }
+            },
+            scales: {
+              y: { beginAtZero: true }
+            }
+          }
+        });
+      }
+
+      // Gráfico Comparativo (barras)
+      const compareCtx = document.getElementById('compareChart');
+      if (compareCtx) {
+        new Chart(compareCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+            datasets: [
+              {
+                label: 'Compras',
+                data: [1200000, 1400000, 1000000, 1600000, 1300000],
+                backgroundColor: 'rgba(28, 200, 138, 0.7)'
+              },
+              {
+                label: 'Ventas',
+                data: [1500000, 1700000, 1200000, 1800000, 1600000],
+                backgroundColor: 'rgba(78, 115, 223, 0.7)'
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            animation: {
+              duration: 1200,
+              easing: 'easeOutBounce'
+            },
+            plugins: {
+              legend: { display: true }
+            },
+            scales: {
+              y: { beginAtZero: true }
+            }
+          }
+        });
       }
     });
   </script>
