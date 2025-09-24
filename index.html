@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Droguería Universal - POS</title>
+
+  <!-- Bootstrap y FontAwesome -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+        <i class="fas fa-prescription-bottle-alt"></i> Droguería Universal
+      </div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action active bg-primary text-white" data-content="tablero-principal">
+          <i class="fas fa-th-large"></i> Dashboard
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" data-content="inventarios">
+          <i class="fas fa-boxes"></i> Inventarios
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" data-content="ventas">
+          <i class="fas fa-shopping-cart"></i> Ventas
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" data-content="reportes">
+          <i class="fas fa-chart-bar"></i> Reportes
+        </a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" data-content="configuracion">
+          <i class="fas fa-cog"></i> Configuración
+        </a>
+      </div>
+    </div>
+
+    <!-- Contenido -->
+    <div id="page-content-wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+
+      <div class="container-fluid p-4">
+        <!-- Sección Dashboard -->
+        <div id="tablero-principal" class="content-section">
+          <h1 class="mt-4">Dashboard</h1>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="stat-card-v2 card-products">
+                <div class="stat-icon"><i class="fas fa-boxes"></i></div>
+                <div class="stat-info">
+                  <div class="stat-label">Productos</div>
+                  <div class="stat-value">Cargando...</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="stat-card-v2 card-sales">
+                <div class="stat-icon"><i class="fas fa-cash-register"></i></div>
+                <div class="stat-info">
+                  <div class="stat-label">Ventas</div>
+                  <div class="stat-value">Cargando...</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="stat-card-v2 card-profit">
+                <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                <div class="stat-info">
+                  <div class="stat-label">Ganancias</div>
+                  <div class="stat-value">Cargando...</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="stat-card-v2 card-stock">
+                <div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="stat-info">
+                  <div class="stat-label">Stock Bajo</div>
+                  <div class="stat-value">Cargando...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección Inventarios -->
+        <div id="inventarios" class="content-section d-none">
+          <h2 class="mb-4">Gestión de Inventario</h2>
+          <p>Aquí iría la tabla de productos.</p>
+        </div>
+
+        <!-- Sección Ventas -->
+        <div id="ventas" class="content-section d-none">
+          <h2 class="mb-4">Caja Registradora</h2>
+          <p>Aquí iría el módulo de ventas.</p>
+        </div>
+
+        <!-- Sección Reportes -->
+        <div id="reportes" class="content-section d-none">
+          <h2 class="mb-4">Reportes</h2>
+          <p>Visualiza métricas y gráficos.</p>
+        </div>
+
+        <!-- Sección Configuración -->
+        <div id="configuracion" class="content-section d-none">
+          <h2 class="mb-4">Configuración del Sistema</h2>
+          <p>Ajusta opciones y preferencias.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Manejo de menú lateral
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
+    // Navegación entre secciones
+    $("[data-content]").on("click", function(e) {
+      e.preventDefault();
+      const target = $(this).data("content");
+      $(".list-group-item").removeClass("active bg-primary text-white").addClass("bg-light");
+      $(this).addClass("active bg-primary text-white");
+      $(".content-section").addClass("d-none");
+      $("#" + target).removeClass("d-none");
+    });
+  </script>
+</body>
+</html>

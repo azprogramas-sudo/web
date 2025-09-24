@@ -1,0 +1,81 @@
+body {
+  background-color: #f8f9fc;
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  width: 15rem;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.sidebar-heading {
+  padding: 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  color: #4e73df;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.list-group-item {
+  border: none;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.list-group-item:hover {
+  background-color: #f0f2f8;
+  color: #4e73df;
+}
+
+.stat-card-v2 {
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.stat-card-v2:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.stat-card-v2 .stat-icon {
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+}
+
+.stat-card-v2 .stat-info .stat-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #888;
+}
+
+.stat-card-v2 .stat-info .stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.card-products .stat-icon { background-color: #e7f3ff; color: #0056b3; }
+.card-sales .stat-icon { background-color: #e6f9f0; color: #006633; }
+.card-profit .stat-icon { background-color: #ffeeed; color: #c82333; }
+.card-stock .stat-icon { background-color: #f2eaff; color: #5a189a; }
